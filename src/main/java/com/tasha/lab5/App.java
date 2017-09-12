@@ -15,6 +15,16 @@ public class App {
 
         IContainer container = new ContainerImpl();
 
+//        String javaHome = System.getenv("FILE");
+//        container.importData(javaHome);
+
+        Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
+
+            public void run() {
+                container.saveData("/home/pasha/IdeaProjects/tasha/lab4/src/main/resources/output1.json");
+            }
+        }));
+
         while (true) {
             String line = in.nextLine();
             String command = line.split(" ")[0];
